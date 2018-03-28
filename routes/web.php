@@ -17,6 +17,12 @@ Route::get('/', function () {
 
 Route::get('/usuarios', 'UserController@index');
 
+Route::get('/lista_usuarios', 'UserController@mostrar_usuarios');
+
+Route::get('/formulario_usuario', 'UserController@create');
+
+Route::post('/agregar_nuevo_usuario', 'UserController@agregar_nuevo_usuario');
+
 Route::get('/usuarios/{id}', 'UserController@show')
     ->where('id', '[0-9]+');
 

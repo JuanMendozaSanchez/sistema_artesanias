@@ -1,13 +1,19 @@
-@extends('layout')
+@extends('plantilla.dashboard')
 
-@section('title', 'Usuarios :D')
+@section('title', 'Usuarios listado')
 
-@section('tabla_usuarios')
-    <h1>Usuarios registrados</h1>
-
+@section('contenido')
+<div class="panel-body">
     
-
-    <table class="table table-striped table-bordered">
+    <form class="navbar-form navbar-left pull-right fondo_b"  method="GET" action="/buscar_user" role="search">
+        <div class="form-group">
+            <input type="text" name="nombre" class="form-control" placeholder="Buscar">
+        </div>
+        <button type="submit" class="btn btn-info">Buscar</button>
+    </form>
+    @if($busqueda=='1')
+        <h3>Lista de usuarios</h3>
+        <table class="table table-striped">
         <tr>
             <th>Identificador</th>
             <th>Nombre</th>
@@ -30,5 +36,38 @@
             <li>No hay usuarios registrados.</li>
         @endforelse
     </table>
+    <hr>
+    <br>
+    @else
+        <h2>Usuarios registrados {{ $usuarios->total() }}</h2>
 
+            <table class="table table-striped">
+                <tr>
+                    <th>Identificador</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Tipo</th>
+                </tr>
+                @forelse ($usuarios as $user)
+                    @if($user->tipo==='1')
+                        <p hidden="hidden">{{$tipoUser='Administrador'}}</p>
+                    @else
+                        <p hidden="hidden">{{$tipoUser='Normal'}}</p>
+                    @endif
+                    <tr>
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$tipoUser}}</td>
+                    </tr>
+                @empty
+                    <li>No hay usuarios registrados.</li>
+                @endforelse
+            </table>
+            {!! $usuarios->render() !!}
+            <hr>
+            <br>
+    @endif
+</div>
+    
 @endsection

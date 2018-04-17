@@ -45,7 +45,18 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            //'root' => storage_path('app'),
+            'root' => public_path('img/productos'),
+            'url' => env('APP_URL').'/img/productos/',
+            'visibility' => 'public',
+        ],
+
+        'fotoUser' => [
+            'driver' => 'local',
+            //'root' => storage_path('app'),
+            'root' => public_path('img/usuarios'),
+            'url' => env('APP_URL').'/img/usuarios/',
+            'visibility' => 'public',
         ],
 
         'public' => [

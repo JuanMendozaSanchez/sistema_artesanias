@@ -42,10 +42,36 @@ class UserController extends Controller
 
     public function agregar_nuevo_usuario(Request $request)
 	{
+        $img = $request->file('file');
+       $ruta;
+       
+        //codigo para imagen
+        if (\File::exists($img)) {
+            $ext=$img->getClientOriginalExtension();
+            if (strtolower($ext) =='jpg'||strtolower($ext)=='jpeg'||strtolower($ext)=='bmp'||strtolower($ext)=='png') {
+                $nombre="img_".e(Input::get('inputCorreo').".".$ext);
+                \Storage::disk('fotoUser')->put($nombre,  \File::get($img));
+                $ruta=$nombre;
+                //dd($ruta);
+            }else{
+                \Session::flash('mensaje','El formato no es valido. solo se permiten imagenes jpeg, jpg, png o bmp!!!');
+                return \Redirect::back();
+            }
+                
+        }else{
+            $nombre="user.png";
+            //$img=\Storage::disk('fotoUser')->get($nombre);
+            $ruta=$nombre;
+            //dd($ruta);
+        }
+        //fin codigo para imagen
 
         $usuario = e(Input::get('inputNombre'));
 	    $correo = e(Input::get('inputCorreo'));
 	    $pass = e(Input::get('inputPass'));
+        $fijo = e(Input::get('tel_fijo'));
+        $cel = e(Input::get('tel_cel'));
+        $direc = e(Input::get('direccion'));
 	    $tipo = e(Input::get('tipo'));
 
 	    //creamos un array con las reglas que deben cumplir nuestro formulario
@@ -77,7 +103,11 @@ class UserController extends Controller
 				$user->name  =  $usuario;
 				$user->email=$correo;
 				$user->password=bcrypt($pass);
-				$user->tipo=$tipo;
+				$user->tel_fijo=$fijo;
+                $user->tel_cel=$cel;
+                $user->direccion=$direc;
+                $user->tipo=$tipo;
+                $user->avatar=$ruta;
 				$resul= $user->save();
                 if($resul){
 		            $usuarios=User::all();
@@ -135,13 +165,44 @@ class UserController extends Controller
     {
         $nuevo_nombre=e($request->input('inputNombre'));
         $nuevo_correo=e($request->input('inputCorreo'));
+        $nuevo_tel_fijo=e($request->input('inputTelFijo'));
+        $nuevo_tel_cel=e($request->input('inputTelCel'));
+        $nuevo_direccion=e($request->input('inputDireccion'));
         $nuevo_tipo=e($request->input('tipo'));
+
+        $img = $request->file('file');
+        $ruta;
+        //codigo para imagen
+        if (\File::exists($img)) {
+            $ext=$img->getClientOriginalExtension();
+            if (strtolower($ext) =='jpg'||strtolower($ext)=='jpeg'||strtolower($ext)=='bmp'||strtolower($ext)=='png') {
+                $nombre="img_".e(Input::get('inputCorreo').".".$ext);
+                \Storage::disk('fotoUser')->put($nombre,  \File::get($img));
+                $ruta=$nombre;
+                //dd($ruta);
+            }else{
+                \Session::flash('mensaje','El formato no es valido. solo se permiten imagenes jpeg, jpg, png o bmp!!!');
+                return \Redirect::back();
+            }
+                
+        }else{
+            $user= User::find($id);
+            $nombre=$user->avatar;
+            //$img=\Storage::disk('fotoUser')->get($nombre);
+            $ruta=$nombre;
+            //dd($ruta);
+        }
+        //fin codigo para imagen
 
         try
         {
             $user= User::find($id);
             $user->name  =  $nuevo_nombre;
             $user->email=$nuevo_correo;
+            $user->tel_fijo=$nuevo_tel_fijo;
+            $user->tel_cel=$nuevo_tel_cel;
+            $user->direccion=$nuevo_direccion;
+            $user->avatar=$ruta;
             $user->tipo=$nuevo_tipo;
             $resul= $user->save();
 
@@ -178,6 +239,14 @@ class UserController extends Controller
         
         try {
             $usuario=User::findOrFail($id);
+
+            if ($usuario->avatar=='user.png') {
+                
+            }else{
+                //Storage::delete('file.jpg');
+                \Storage::disk('fotoUser')->delete($usuario->avatar);
+            }
+
             $usuario->delete();
             \Session::flash('mensaje','El usuario '.$usuario->name.' fue eliminado con exito!');
             $usuarios=User::all();

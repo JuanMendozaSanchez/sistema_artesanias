@@ -10,6 +10,8 @@
   <title>@yield('title') - "La Oaxaqueña"</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    
   <link rel="stylesheet" href=" {{ asset('recursos/css/bootstrap.min.css')}}">
 
   <link rel="stylesheet" href=" {{ asset('css/style.css')}}">  
@@ -34,7 +36,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
         <li><a href="#">Acerca de</a></li>
-        <li><a href="#">Productos</a></li>
+        <li><a href="/webProductos">Productos</a></li>
         <li><a href="#">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -42,7 +44,7 @@
                 <li><a class="nav-link" href="/logueo"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
             @else
                 <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span class="glyphicon glyphicon-user"></span>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
 
@@ -58,14 +60,17 @@
                     </form>
                 </div>
             </li>
+            <li>
+              <div class="div-avatar">
+                <img src="{{ asset('img/usuarios/'.Auth::user()->avatar) }}" alt="Avatar" class="avatar" title="{{ Auth::user()->name }}">
+              </div>
+            </li>
         @endguest
       </ul>
     </div>
   </div>
 </nav>
 
-
-@yield('content')
 
 <div class="container">
             @yield('content')
@@ -83,7 +88,21 @@
 <footer class="container-fluid text-center footer_m">
   <p>Footer Text</p>
 </footer>
-
+<script type="text/javascript">
+    $(function(){
+      var current_page_URL = location.href;
+      $( "a" ).each(function() {
+         if ($(this).attr("href") !== "#") {
+           var target_URL = $(this).prop("href");
+           if (target_URL == current_page_URL) {
+              $('nav a').parents('li, ul').removeClass('active');
+              $(this).parent('li').addClass('active');
+              return false;
+           }
+         }
+      });
+    });
+</script>
 </body>
 </html>
 

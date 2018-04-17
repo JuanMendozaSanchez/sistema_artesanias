@@ -18,6 +18,9 @@
             <th>Identificador</th>
             <th>Nombre</th>
             <th>Correo</th>
+            <th>Teléfono fijo</th>
+            <th>Teléfono celular</th>
+            <th>Dirección</th>
             <th>Tipo</th>
         </tr>
         @forelse ($usuarios as $user)
@@ -30,6 +33,9 @@
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
+                <td>{{$user->tel_fijo}}</td>
+                <td>{{$user->tel_cel}}</td>
+                <td>{{$user->direccion}}</td>
                 <td>{{$tipoUser}}</td>
             </tr>
         @empty
@@ -46,6 +52,9 @@
                     <th>Identificador</th>
                     <th>Nombre</th>
                     <th>Correo</th>
+                    <th>Teléfono fijo</th>
+                    <th>Teléfono celular</th>
+                    <th>Dirección</th>
                     <th>Tipo</th>
                 </tr>
                 @forelse ($usuarios as $user)
@@ -58,6 +67,9 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->tel_fijo}}</td>
+                        <td>{{$user->tel_cel}}</td>
+                        <td>{{$user->direccion}}</td>
                         <td>{{$tipoUser}}</td>
                     </tr>
                 @empty

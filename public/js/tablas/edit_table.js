@@ -1,6 +1,6 @@
 
                     $(document).ready(function(){
-                      conta=0;
+                      contador=1;
                     $("#agregar").click(function(){
                       // Obtenemos el numero de columnas (td) que tiene la primera fila
                       // (tr) del id "tabla"
@@ -15,23 +15,18 @@
 
                       //arreglo de categorias
                      var datos = document.getElementById('varphp').value;
-                     var arr=jQuery.parseJSON( datos );;
+                     var arr=jQuery.parseJSON( datos );
+                     
                       //console.log(arr[0].nombre);
 
                       //$('#contador-filas').val(cantidad);
-                      nuevaFila+="<td><input class='form-control' type='text' name='codigo' placeholder='codigo' required /> </td>"+
+                      nuevaFila+="<td><input class='form-control' type='text' name='codigo' placeholder='codigo requerido único' required minlength='4' maxlength='40'/> </td>"+
 
-                      "<td><input class='form-control' type='text' name='nombre' placeholder='nombre' required /> </td>"+
-
-                      "<td><input class='form-control' type='text' name='descripcion' placeholder='descripción' required /> </td>"+
-                      "<td><input class='form-control' type='text' name='precio_c' placeholder='precio compra' required /> </td>"+
-                      "<td><input class='form-control' type='text' name='precio_v' placeholder='precio venta' required /> </td>"+
-                      "<td><input class='form-control' type='text' name='cantidad' placeholder='cantidad' required /> </td>"+
+                      "<td><input class='form-control' type='text' name='nombre' placeholder='nombre' required minlength='3' maxlength='180'/></td>"+
+                      "<td><input class='form-control' type='number' name='existencia' placeholder='cantidad' required min='0'  minlength='1' maxlength='30'/> </td>"+
                     
-                      "<td><select class='form-control' id='ns["+conta+"]' name='categoria'></select></td>"+
+                      "<td><select class='form-control' id='ns["+contador+"]' name='categoria'></select></td>"+
                       "<td><button class='borrar btn btn-danger'><i class='ti-close'></i></button></td>"
-                      
-
                       
                       ;
                       
@@ -41,10 +36,7 @@
                       nuevaFila+="</tr>";
                       $("#tabla").append(nuevaFila);
 
-                      //select = document.getElementByName('categoria');
-                      //var select=document.getElementsByName('categoria');
-                      //var select=document.getElementsByTagName('categoria');
-                      select = document.getElementById("ns["+conta+"]");
+                      var select = document.getElementById("ns["+contador+"]");
                       //miSelect.appendChild(miOption);
                       for (var i = 0; i < arr.length; i++) {
                         var opt = document.createElement('option');
@@ -52,8 +44,8 @@
                         opt.innerHTML = arr[i].nombre;
                         select.appendChild(opt);
                       }
-                      conta+=1;
-                     
+                      contador+=1;
+                      //console.log(contador);
 
                     });
 
@@ -72,5 +64,11 @@
                         
                         
                     });
+
+                    //funcion obtener datos
+                    
+
+
                     
                     });
+

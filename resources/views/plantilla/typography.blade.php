@@ -1,7 +1,7 @@
 
 @extends('plantilla.dashboard')
 
-@section('title', 'La Oaxaqueña')
+@section('title', 'Tipografía')
 
 @section('contenido')
         <div class="content">

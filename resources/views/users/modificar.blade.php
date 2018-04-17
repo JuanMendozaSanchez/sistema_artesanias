@@ -1,13 +1,13 @@
 @extends('plantilla.dashboard')
 
-@section('title', 'Usuarios :D')
+@section('title', 'Datos del usuario')
 
 @section('contenido')
 
 @if(Session::has('mensaje'))
     <p class="txt_cent alert alert-success">
         <strong>
-            <i class="fa fa-check"></i>{{ Session::get('mensaje') }}  
+            {{ Session::get('mensaje') }}  
         </strong>
         <a href="/datos_usuarios" class="btn btn-info" role="button">Aceptar</a>
     </p>                
@@ -19,9 +19,12 @@
         <div class="col-md-10">
             <table class="table table-striped table-bordered">
                 <tr>
-                    <th>Identificador</th>
+                    <th>Clave</th>
                     <th>Nombre</th>
                     <th>Correo</th>
+                    <th>Telefono fijo</th>
+                    <th>Telefono celular</th>
+                    <th>Dirección</th>
                     <th>Tipo</th>
                 </tr>
                     @if($usuario->tipo==='1')
@@ -33,6 +36,9 @@
                         <td>{{$usuario->id}}</td>
                         <td>{{$usuario->name}}</td>
                         <td>{{$usuario->email}}</td>
+                        <td>{{$usuario->tel_fijo}}</td>
+                        <td>{{$usuario->tel_cel}}</td>
+                        <td>{{$usuario->direccion}}</td>
                         <td>{{$tipoUser}}</td>
                     </tr>
             </table>
@@ -42,8 +48,23 @@
     <br>
     <hr>
     <div>
-        <form role="form" method="post" action="/modificar_usuario/{{$usuario->id}}">
-            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> 
+
+
+        <form role="form" method="post" action="/modificar_usuario/{{$usuario->id}}" accept-charset="UTF-8" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <div class="form-group" id="div-foto" >
+                <div >
+                    <img src="{{ asset('img/usuarios/'.$usuario->avatar)}}" id="output-m" >
+                </div>
+                    <br>
+                  <label class="btn btn-default" id="etiqueta-m" >Foto de perfil
+                    <h6 id="fotico"></h6>
+                    <div >
+                        <input type="file" class="form-control" name="file" accept="image/*"  onchange="loadFile(event)" title="Cambiar foto de perfil" id="file" value="{{ $usuario->avatar }}">
+                    </div>
+                  </label>
+                  <hr>
+              </div> 
               <div class="form-group">
                 <label >Nombre</label>
                 <input type="text" class="form-control" name="inputNombre" value="{{ $usuario->name }}" required   minlength="3" maxlength="180">
@@ -51,6 +72,18 @@
               <div class="form-group">
                 <label >Correo</label>
                 <input type="email" class="form-control" name="inputCorreo" value="{{ $usuario->email }}"  required  minlength="6" maxlength="180">
+              </div>
+              <div class="form-group">
+                <label >Teléfono fijo</label>
+                <input type="text" class="form-control" name="inputTelFijo" value="{{ $usuario->tel_fijo }}" required   minlength="1" maxlength="30">
+              </div>
+              <div class="form-group">
+                <label >Teléfono celular</label>
+                <input type="text" class="form-control" name="inputTelCel" value="{{ $usuario->tel_cel }}" required   minlength="10" maxlength="30">
+              </div>
+              <div class="form-group">
+                <label >Dirección</label>
+                <input type="text" class="form-control" name="inputDireccion" value="{{ $usuario->direccion }}" required   minlength="10" maxlength="200">
               </div>
               <div class="form-group">
                 <label >Tipo</label>
@@ -72,6 +105,20 @@
           
         
     <br>
-  
+  <script>
+  var loadFile = function(event) {
+    //var output = document.getElementById('output-m');
+    //output.src = URL.createObjectURL(event.target.files[0]);
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output-m');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+
+    var nom=document.getElementById('file').files[0].name;
+    var texto=document.getElementById('fotico').innerHTML=nom;
+  };
+</script>
 
 @endsection

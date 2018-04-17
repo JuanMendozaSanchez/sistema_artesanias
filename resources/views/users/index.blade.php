@@ -14,7 +14,7 @@
                       <p class="category">Bienvenidos</p>
                     </div>
                     <hr>
-                      <div class="col-sm-10 col-md-offset-1">
+                      <div class="col-sm-10 col-sm-offset-1" >
                         <div id="myCarousel" class="carousel slide " data-ride="carousel">
                           <!-- Indicators -->
                           <ol class="carousel-indicators">
@@ -25,7 +25,7 @@
                           <!-- Wrapper for slides -->
                           <div class="carousel-inner" role="listbox">
                             <div class="item active">
-                              <img src="https://placehold.it/800x400?text=IMAGE" alt="Image">
+                              <img src="{{ asset('img/muestra/dos.jpg') }}" alt="Image">
                               <div class="carousel-caption">
                                 <h3>Sell $</h3>
                                 <p>Money Money.</p>
@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="item">
-                              <img src="https://placehold.it/800x400?text=Another Image Maybe" alt="Image">
+                              <img src="{{ asset('img/muestra/tres.jpg') }}" alt="Image">
                               <div class="carousel-caption">
                                 <h3>More Sell $</h3>
                                 <p>Lorem ipsum...</p>

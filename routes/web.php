@@ -11,6 +11,8 @@
 |
 */
 use Illuminate\Http\Request;
+use SistemaLaOax\Categoria;
+use SistemaLaOax\Subcategoria;
 
 Route::get('/', function () {
     return view('home');
@@ -99,8 +101,35 @@ Route::get('/formProducto','ProductoController@formProducto');
 
 Route::post('agregarProducto','ProductoController@agregarProducto');
 
+Route::get('listaModificar', 'ProductoController@listaModificar');
+
+Route::get('/modificarProducto/{id}','ProductoController@formEditar');
+
+Route::post('/actualizarProducto/{id}','ProductoController@realizarActualizacion');
+
 Route::get('entradaProducto','ProductoController@entrada');
 
 Route::post('ejecutarEntrada','ProductoController@actualizar_productos');
+
+Route::get('listadoEliminar', 'ProductoController@listaEliminar');
+
+Route::delete('/eliminarProducto/{id}','ProductoController@eliminarProducto');
+////fin rutas para productos
+
+
+
+/////prueba select
+Route::get('dropdown', function(){
+	$id = Input::get('option');
+	dd($id);
+	$procesos = Categoria::find($id)->subcategorias;
+	return $procesos->lists('nombre', 'sub_id');
+});
+
+
+//__________________________________________
+//rutas para pagina web de inicio 
+Route::get('webProductos','PageController@seccionProductos');
+
 
 

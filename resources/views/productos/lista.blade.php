@@ -1,6 +1,6 @@
 @extends('plantilla.dashboard')
 
-@section('title', 'Usuarios listado')
+@section('title', 'Listado de productos')
 
 @section('contenido')
 <div class="panel-body">
@@ -22,6 +22,7 @@
             <th>Precio de venta</th>
             <th>Existencia</th>
             <th>Categoria</th>
+            <th>Imagen</th>
         </tr>
         @forelse ($productos as $producto)
             <tr>
@@ -32,9 +33,10 @@
                 <td>{{$producto->precio_venta}}</td>
                 <td>{{$producto->existencia}}</td>
                 <td>{{$producto->categoria}}</td>
+                <td><img src="{{ asset('img/productos/'.$producto->ruta)}}" alt="Avatar" class="avatar-p" title="{{ $producto->nombre }}"></td>
             </tr>
         @empty
-            <li>No hay usuarios productos registrados.</li>
+            <li>No hay productos registrados.</li>
         @endforelse
     </table>
     <a class="btn btn-warning" href="/listaProductos">Regresar</a>
@@ -52,6 +54,7 @@
                     <th>Precio de venta</th>
                     <th>Existencia</th>
                     <th>Categoria</th>
+                    <th>Imagen</th>
                 </tr>
                 @forelse ($productos as $producto)
                     <tr>
@@ -62,6 +65,7 @@
                         <td>{{$producto->precio_venta}}</td>
                         <td>{{$producto->existencia}}</td>
                         <td>{{$producto->categoria}}</td>
+                        <td><img src="{{ asset('img/productos/'.$producto->ruta)}}" alt="Avatar" class="avatar-p" title="{{ $producto->nombre }}"></td>
                     </tr>
                 @empty
                     <li>No hay productos registrados.</li>

@@ -27,7 +27,7 @@ html {
 .my-body {
 	  margin: 0;
 	  margin-bottom: 7%;
-	  padding-bottom: 5%;
+	  padding-bottom: 7%;
 	}
 
 .footer_m{
@@ -172,3 +172,77 @@ img {
 .rojo{
   color:red;
 }
+
+#div-foto{
+  text-align: center;
+}
+
+#output{
+  width: 42%;
+  height: 25rem;
+  border-radius: 50%;
+}
+
+#etiqueta{
+  height: 6rem; 
+  width: 50%
+}
+
+#file{
+  opacity: 0;
+  cursor: pointer;
+}
+
+#output-m{
+  width: 30%;
+  height: 25rem;
+  border-radius: 50%;
+}
+
+#etiqueta-m{
+  height: 6rem; 
+  width: 35%
+}
+
+#output-modpro{
+  width: 20%;
+  height: 17rem;
+  border-radius: 50%;
+}
+
+#etiqueta-modpro{
+  height: 4rem; 
+  width: 25%
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.div-avatar{
+  margin-top: 0.5rem;
+}
+
+.avatar-p{
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.avatar-p:hover{
+    position: relative;
+    -ms-transform: scale(2); /* IE 9 */
+    -webkit-transform: scale(2); /* Safari 3-8 */
+    transform: scale(2); 
+    z-index: 1;
+}
+
+#myCarousel, .carousel-inner, .carousel-caption{
+  height: 40rem;
+  border-radius: 20px;
+}
+

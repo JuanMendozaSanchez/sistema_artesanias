@@ -1,46 +1,56 @@
 
 @extends('plantilla.dashboard')
 
-@section('title', 'La Oaxaqueña')
+@section('title', 'Perfil')
 
 @section('contenido')
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-5">
                         <div class="card card-user">
                             <div class="image">
-                                <img src="{{ asset('recursos/img/background.jpg') }}" alt="..."/>
+                                <img src="{{ asset('img/muestra/tres.jpg') }}" alt="..."/>
                             </div>
                             <div class="content">
                                 <div class="author">
-                                  <img class="avatar border-white" src="{{ asset('recursos/img/faces/face-2.jpg')}}" alt="..."/>
-                                  <h4 class="title">Chet Faker<br />
-                                     <a href="#"><small>@chetfaker</small></a>
+                                  <img class="avatar border-white" src="{{ asset('img/usuarios/'.Auth::user()->avatar)}}" alt="..."/>
+                                  <h4 class="title">{{ Auth::user()->name }}<br />
+                                    @if(Auth::user()->tipo=='1')
+                                        <p><small>Administrador</small><p>
+                                    @else
+                                        <p><small>Normal</small><p>
+                                    @endif
+                                     
                                   </h4>
                                 </div>
                                 <p class="description text-center">
-                                    "I like the way you work it <br>
-                                    No diggity <br>
-                                    I wanna bag it up"
+                                    {{ Auth::user()->direccion }}
+                                </p>
+                                <p class="description text-center">
+                                     Celular: {{ Auth::user()->tel_cel }}
+                                </p>
+                                <p class="description text-center">
+                                    Correo: {{ Auth::user()->email }}
                                 </p>
                             </div>
                             <hr>
                             <div class="text-center">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
-                                        <h5>12<br /><small>Files</small></h5>
+                                        <!--<h5>12<br /><small>Files</small></h5>-->
                                     </div>
                                     <div class="col-md-4">
-                                        <h5>2GB<br /><small>Used</small></h5>
+                                        <h5>{{ Auth::user()->id }}<br /><small>Clave</small></h5>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>24,6$<br /><small>Spent</small></h5>
+                                        <!--<h5>24,6$<br /><small>Spent</small></h5>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        <!--<div class="card">
                             <div class="header">
                                 <h4 class="title">Team Members</h4>
                             </div>
@@ -102,32 +112,32 @@
                                             </li>
                                         </ul>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="col-lg-8 col-md-7">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Edit Profile</h4>
+                                <h4 class="title">Editar Perfil</h4>
                             </div>
                             <div class="content">
                                 <form>
                                     <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Clave</label>
+                                                <input type="text" class="form-control border-input" disabled placeholder="Clave" value="{{ Auth::user()->id }}">
+                                            </div>
+                                        </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Company</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Company" value="Creative Code Inc.">
+                                                <label>Nombre</label>
+                                                <input type="text" class="form-control border-input" placeholder="Usuario" value="{{ Auth::user()->name }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" class="form-control border-input" placeholder="Username" value="michael23">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control border-input" placeholder="Email">
+                                                <label for="exampleInputEmail1">Dirección de correo</label>
+                                                <input type="email" class="form-control border-input" placeholder="Correo" value="{{ Auth::user()->email }}">
                                             </div>
                                         </div>
                                     </div>
@@ -135,14 +145,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control border-input" placeholder="Company" value="Chet">
+                                                <label>Teléfono fijo</label>
+                                                <input type="text" class="form-control border-input" placeholder="Teléfono fijo" value="{{ Auth::user()->tel_fijo }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control border-input" placeholder="Last Name" value="Faker">
+                                                <label>Teléfono celular</label>
+                                                <input type="text" class="form-control border-input" placeholder="Teléfono celular" value="{{ Auth::user()->tel_cel }}">
                                             </div>
                                         </div>
                                     </div>
@@ -150,34 +160,41 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control border-input" placeholder="Home Address" value="Melbourne, Australia">
+                                                <label>Dirección</label>
+                                                <input type="text" class="form-control border-input" placeholder="Dirección actual" value="{{ Auth::user()->direccion }}">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
-                                            </div>
+                                            @if(Auth::user()->tipo=='1')
+                                                <div class="form-group">
+                                                    <label>Tipo usuario</label>
+                                                    <input type="text" class="form-control border-input" disabled placeholder="Tipo usuario" value="Administrador">
+                                                </div>
+                                            @else
+                                                <div class="form-group">
+                                                    <label>Tipo usuario</label>
+                                                    <input type="text" class="form-control border-input" disabled placeholder="Tipo usuario" value="Normal">
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label>Country</label>
                                                 <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label>Postal Code</label>
                                                 <input type="number" class="form-control border-input" placeholder="ZIP Code">
-                                            </div>
+                                            </div>-->
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <!--<div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
@@ -187,9 +204,10 @@ I'll probably won't, left to my own devices
 But that's the difference in our opinions.</textarea>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                                        <hr>
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Actualizar Perfil</button>
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>

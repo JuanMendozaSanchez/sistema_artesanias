@@ -1,6 +1,6 @@
 @extends('plantilla.dashboard')
 
-@section('title', 'Eliminar usuario')
+@section('title', 'Eliminar producto')
 
 @section('contenido')
     
@@ -15,7 +15,7 @@
         </p>                
     @endif
 
-    <h1>Usuarios existentes {{ $productos->total() }}</h1>
+    <h1>Productos existentes {{ $productos->total() }}</h1>
 
     
     

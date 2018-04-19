@@ -1,6 +1,7 @@
 
                     $(document).ready(function(){
                       contador=1;
+                      contador_select=1;
                     $("#agregar").click(function(){
                       // Obtenemos el numero de columnas (td) que tiene la primera fila
                       // (tr) del id "tabla"
@@ -16,16 +17,17 @@
                       //arreglo de categorias
                      var datos = document.getElementById('varphp').value;
                      var arr=jQuery.parseJSON( datos );
+
                      
                       //console.log(arr[0].nombre);
 
                       //$('#contador-filas').val(cantidad);
-                      nuevaFila+="<td><input class='form-control' type='text' name='codigo' placeholder='codigo requerido único' required minlength='4' maxlength='40'/> </td>"+
+                      nuevaFila+="<td><input class='form-control' type='text' id='codigo["+contador+"]' name='codigo' placeholder='codigo requerido único' required minlength='4' maxlength='40' onkeyup='myFunction()'/> </td>"+
 
-                      "<td><input class='form-control' type='text' name='nombre' placeholder='nombre' required minlength='3' maxlength='180'/></td>"+
+                      "<td><input class='form-control' type='text' disabled id='nombre["+contador+"]' name='nombre' placeholder='nombre' required minlength='3' maxlength='180'/></td>"+
                       "<td><input class='form-control' type='number' name='existencia' placeholder='cantidad' required min='0'  minlength='1' maxlength='30'/> </td>"+
                     
-                      "<td><select class='form-control' id='ns["+contador+"]' name='categoria'></select></td>"+
+                      /*"<td><select class='form-control' id='ns["+contador_select+"]' name='categoria'></select></td>"+*/
                       "<td><button class='borrar btn btn-danger'><i class='ti-close'></i></button></td>"
                       
                       ;
@@ -36,14 +38,15 @@
                       nuevaFila+="</tr>";
                       $("#tabla").append(nuevaFila);
 
-                      var select = document.getElementById("ns["+contador+"]");
+                      /*var select = document.getElementById("ns["+contador_select+"]");
                       //miSelect.appendChild(miOption);
                       for (var i = 0; i < arr.length; i++) {
-                        var opt = document.createElement('option');
-                        opt.value = arr[i].nombre;
-                        opt.innerHTML = arr[i].nombre;
-                        select.appendChild(opt);
-                      }
+                          var opt = document.createElement('option');
+                          opt.value = arr[i].nombre;
+                          opt.innerHTML = arr[i].nombre;
+                          select.appendChild(opt);
+                        
+                      }*/
                       contador+=1;
                       //console.log(contador);
 

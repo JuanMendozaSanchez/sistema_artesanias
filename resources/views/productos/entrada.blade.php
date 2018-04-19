@@ -29,7 +29,7 @@
                         <center>
                           <h4>Lista de productos para agregar</h4>
                           <br>
-                          <button id="agregar" class=" btn btn-info">Agregar</button></center>
+                          <button id="agregar" disabled class=" btn btn-info">Agregar</button></center>
                         <hr>
                         <form action="ejecutarEntrada" method="POST" onsubmit="grabaTodoTabla('tabla')">
                         <table class="table table-bordered " style="width: 100%" id="tabla">
@@ -38,7 +38,7 @@
                         <td><b>Codigo</b></td>
                         <td><b>Nombre</b></td>
                         <td><b>Cantidad</b></td>
-                        <td><b>Categoria</b></td>
+                        <!--<td><b>Categoria</b></td>-->
                         <td><b>Opción</b></td>
                         </tr>
                         </thead>
@@ -46,19 +46,19 @@
                         <tr class="fila-0 celda">
                         <input type="hidden" id="contador-filas" value="1" />
 
-                        <td ><input class="form-control " type="text" name="codigo" placeholder="codigo requerido único" required   minlength="4" maxlength="40"/></td>
+                        <td ><input class="form-control " type="text" id="codigo[0]" name="codigo" placeholder="codigo requerido único" required   minlength="4" maxlength="40" onkeyup="myFunction()"  /></td>
 
-                        <td><input class="form-control" type="text" name="nombre" placeholder="nombre producto" required minlength="3" maxlength="180"/></td>
+                        <td><input disabled class="form-control" type="text" id="nombre[0]" name="nombre" placeholder="nombre producto" required minlength="3" maxlength="180" /></td>
 
-                        <td><input class="form-control" type="number" name="existencia" placeholder="existencia" required min="0"  minlength="1" maxlength="30"/></td>
+                        <td><input class="form-control" type="number" name="existencia" placeholder="cantidad" required min="0"  minlength="1" maxlength="30"/></td>
 
-                        <td><select class="form-control" id="ns[0]" name="categoria">
+                        <!--<td><select class="form-control" id="ns[0]" name="categoria">
                               @foreach ($categorias as $categoria) 
                                 <option>{{ $categoria->nombre }}</option>
                               @endforeach
                             </select>
-                        </td>
-                        <td><button class="borrar btn btn-danger"><i class="ti-close"></i></button></td>
+                        </td>-->
+                        <td><button disabled class="borrar btn btn-danger"><i class="ti-close"></i></button></td>
                         </tr>
                         </tbody>
                         </table>
@@ -160,6 +160,61 @@ function grabaTodoTabla(TABLAID){
 
   document.getElementById("datos2").value=myJsonString;
   document.getElementById("codigos").value=myJsonString2;
+}
+
+function myFunction() {
+    if (contador==1) {
+      var codi = document.getElementById("codigo[0]").value;
+      if (codi.length>=4) {
+        console.log("entro al if con contador = "+contador);
+        
+        var x = document.getElementById("nombre[0]");
+
+        //arreglo de productos
+        var datos = document.getElementById('varphp2').value;
+        var jsonProductos=jQuery.parseJSON( datos );
+
+        for (var i = 0; i < jsonProductos.length; i++) {
+            if (jsonProductos[i].codigo==codi) {
+              x.value=jsonProductos[i].nombre;
+            }
+          }
+          contador+=1;
+          var btnAdd = document.getElementById("agregar");
+          btnAdd.disabled = false;
+      }
+
+    }else{
+      contador_nuevo=contador-1;
+      if (contador_nuevo==1) {
+        
+      }else{
+        console.log('contador nuevo = '+contador_nuevo);
+        var codi = document.getElementById("codigo["+contador_nuevo+"]").value;
+
+
+        if (codi.length>=4) {
+          console.log("entro al if con contador = "+contador_nuevo);
+          
+          var x = document.getElementById("nombre["+contador_nuevo+"]");
+
+          //arreglo de productos
+          var datos = document.getElementById('varphp2').value;
+          var jsonProductos=jQuery.parseJSON( datos );
+
+          for (var i = 0; i < jsonProductos.length; i++) {
+              if (jsonProductos[i].codigo==codi) {
+                x.value=jsonProductos[i].nombre;
+              }
+            }
+        }
+      }
+      
+
+    }
+
+    
+    
 }
 </script>
 @endsection

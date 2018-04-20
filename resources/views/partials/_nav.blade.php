@@ -17,6 +17,12 @@
 								<p>Stats</p>
                             </a>
                         </li>-->
+                        <li>
+                            <a href="/categorias">
+                                <i class="ti-menu-alt"></i>
+                                <p>Categorías</p>
+                            </a>
+                        </li>
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-list-alt"></span>
@@ -28,7 +34,6 @@
                                 <li><a href="/formProducto">Agregar</a></li>
                                 <li><a href="/listaModificar">Modificar</a></li>
                                 <li><a href="/entradaProducto">Entradas</a></li>
-                                <li><a href="#">Salidas</a></li>
                                 <li><a href="/listadoEliminar">Eliminar</a></li>
                               </ul>
                         </li>

@@ -116,6 +116,10 @@ Route::get('listadoEliminar', 'ProductoController@listaEliminar');
 Route::delete('/eliminarProducto/{id}','ProductoController@eliminarProducto');
 ////fin rutas para productos
 
+///rutas para categorías
+Route::get('categorias','CategoriaController@inicio');
+///fin rutas para categorías
+
 
 
 /////prueba select

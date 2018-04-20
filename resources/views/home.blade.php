@@ -13,26 +13,26 @@
   <div class="container">
 <div class="row">
   <div class="col-sm-8 ">
-    <div class="content img-alto">
+    <div class="content">
       <ul id="galeria1" >
             <li>
               <a href="#slide1">
-                <img class="alto" src="{{ asset('img/muestra/uno.jpg')}}" alt="Descripción breve 1 <a href='#link'>Link si se desea!</a>">
+                <img  src="{{ asset('img/muestra/uno.jpg')}}" alt="Descripción breve 1 <a href='#link'>Link si se desea!</a>">
               </a>
             </li>
             <li>
               <a href="#slide2">
-                <img class="alto" src="{{ asset('img/muestra/dos.jpg')}}"  alt="Descripción breve 2">
+                <img  src="{{ asset('img/muestra/dos.jpg')}}"  alt="Descripción breve 2">
               </a>
             </li>
             <li>
               <a href="#slide3">
-                <img class="alto" src="{{ asset('img/muestra/tres.jpg')}}" alt="Descripción breve 3.">
+                <img  src="{{ asset('img/muestra/tres.jpg')}}" alt="Descripción breve 3.">
               </a>
             </li>
             <li>
               <a href="#slide4">
-                <img class="alto" src="{{ asset('img/muestra/tres.jpg')}}" alt="Descripción breve 4.">
+                <img  src="{{ asset('img/muestra/tres.jpg')}}" alt="Descripción breve 4.">
               </a>
             </li>
           </ul>

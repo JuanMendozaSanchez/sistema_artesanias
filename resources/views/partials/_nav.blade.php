@@ -16,12 +16,27 @@
                                 <i class="ti-panel"></i>
 								<p>Stats</p>
                             </a>
-                        </li>-->
+                        </li>
                         <li>
-                            <a href="/categorias">
-                                <i class="ti-menu-alt"></i>
-                                <p>Categorías</p>
+                            <div class="dropdown">
+                          <button class="dropbtn">Dropdown</button>
+                          <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                          </div>
+                        </div>
+                        </li>-->
+                        
+                        <li class="dropdown">
+                            <a href="/categorias" >
+                                <span class="glyphicon glyphicon-th-large"></span>
+                                <p>Categorías </p>
+
                             </a>
+                            <div class="dropdown-content">
+                                <a href="subcategorias">Subcategorías <i class="ti-link"></i></a>
+                            </div>
                         </li>
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

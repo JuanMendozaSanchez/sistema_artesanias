@@ -118,7 +118,23 @@ Route::delete('/eliminarProducto/{id}','ProductoController@eliminarProducto');
 
 ///rutas para categorías
 Route::get('categorias','CategoriaController@inicio');
+
+Route::post('agregarCategoria','CategoriaController@agregarCategoria');
+
+Route::get('/modificarCategoria/{id}','CategoriaController@formEditar');
+
+Route::post('/actualizarCategoria/{id}','CategoriaController@realizarActualizacion');
+
+Route::delete('eliminarCategoria/{id}','CategoriaController@eliminarCategoria');
 ///fin rutas para categorías
+
+///rutas para subcategorías
+Route::get('subcategorias','SubcategoriaController@inicio');
+
+Route::post('agregarSubcategoria','SubcategoriaController@agregarSubcategoria');
+
+Route::delete('eliminarporNombre/{nombre}','SubcategoriaController@eliminarSubcategoria');
+///fin rutas para subcategorías
 
 
 

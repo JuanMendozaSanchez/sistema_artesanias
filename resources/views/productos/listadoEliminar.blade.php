@@ -41,7 +41,7 @@
                     <form action="{{URL::to('/')}}/eliminarProducto/{{ $producto->id }}" method="POST">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
-                      <button class="btn btn-danger" type="submit" onclick="return confirm('¿Está seguro de eliminar usuario?')">Eliminar</button>
+                      <button class="btn btn-danger" type="submit" onclick="return confirm('¿Está seguro de eliminar el producto?')">Eliminar</button>
                     </form>
                 </td>
             </tr>

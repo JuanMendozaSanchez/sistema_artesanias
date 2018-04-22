@@ -174,6 +174,7 @@ class ProductoController extends Controller
         $contador=count($producto);
         $categorias=Categoria::all();
         $subcategorias=Subcategoria::all();
+        $idCategoria;
 
         //for para obtener la categoria especifica del producto
         foreach ($categorias as $cate) {

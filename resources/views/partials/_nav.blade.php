@@ -27,6 +27,9 @@
                           </div>
                         </div>
                         </li>-->
+                        <li>
+                            <a href="ventas" target="blank">Ventas</a>
+                        </li>
                         
                         <li class="dropdown">
                             <a href="/categorias" >

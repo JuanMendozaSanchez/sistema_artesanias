@@ -136,6 +136,11 @@ Route::post('agregarSubcategoria','SubcategoriaController@agregarSubcategoria');
 Route::delete('eliminarporNombre/{nombre}','SubcategoriaController@eliminarSubcategoria');
 ///fin rutas para subcategorías
 
+///rutas para ventas
+Route::get('ventas','VentasController@inicio');
+
+Route::post('realizarVenta','VentasController@guardarVenta');
+
 
 
 /////prueba select

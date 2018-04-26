@@ -40,11 +40,6 @@ class pruebaController extends Controller
 	//funciona bien para actualizar
 	//DB::table('prueba')->where('nombre', array_get($dat[0], 'nombre'))->update($dat[0]);
 
-	
-
-
-
-
     }
 
     public function actualizar_usuario(Request $request)

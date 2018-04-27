@@ -366,5 +366,17 @@ img {
 .row{
   padding-left: 1rem;
   padding-right: 1rem;
+  padding-bottom: 1rem;
 }
+
+@media only screen and (max-width: 600px) {
+    .formita>table{
+      width: 100%;
+    }
+}
+
+.btn-abajo{
+  height: 5rem;
+}
+
 /*Css para el modulo ve ventas --fin*/

@@ -141,6 +141,10 @@ Route::get('ventas','VentasController@inicio');
 
 Route::post('realizarVenta','VentasController@guardarVenta');
 
+Route::get('listadoCancelarVenta','VentasController@listadoCancelarVenta');
+
+Route::delete('cancelarVenta/{id}','VentasController@cancelarVenta');
+
 
 
 /////prueba select

@@ -67,9 +67,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/notificaciones">
-                        <i class="ti-bell"></i>
-                        <p>Notifications</p>
+                    <a href="/reportes">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                        <p>Reportes</p>
                     </a>
                 </li>
             </ul>

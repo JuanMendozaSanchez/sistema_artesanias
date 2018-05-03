@@ -42,6 +42,7 @@
                     <div class="row">
                       <div class="col-md-12 table-responsive" >
                         <h2 class="text-center text-primary">Lista de productos</h2>
+                        <!--method="POST" action="realizarVenta"-->
                         <form id="formita" method="POST" action="realizarVenta" onsubmit="grabaTodoTabla('tabla')">
                           @csrf
                             <input type="hidden" id="varFolio" name="folioo" value="{{ $ventas }}">
@@ -176,6 +177,8 @@
          elem_p.className="";
         elem_p.innerHTML = '';
 
+        $("#canti").val(1);
+
          break;
        }else{
         var elem_p = document.getElementById('alerta');
@@ -254,6 +257,8 @@ function grabaTodoTabla(TABLAID){
   var CODE=[];
   var restantes=0;
   var TABLA   = $("#"+TABLAID+" tbody > tr");
+  var bandera=0;
+  var suma=0;
 
   //arreglo de productos
   var datosProd = document.getElementById('varphp').value;
@@ -268,19 +273,23 @@ function grabaTodoTabla(TABLAID){
       PU  = $(this).find("input[name*='precioU']").val();
       PF  = $(this).find("input[name*='precioF']").val();
 
+      /*/$(this).find("input[name*='exist']").val()=$(".exist").val()-CANT;
+
       for (var i = 0; i < arrProd.length; i++) {
         if (arrProd[i].codigo==COD) {
-          restantes=parseInt(arrProd[i].existencia)-parseInt(CANT);
+          //existenciaTemp=parseInt(arrProd[i].existencia);
+          //restantes=existenciaTemp-parseInt(CANT);
+          //existenciaTemp=restantes;
         }
-      }
+      }*/
       
-
+      //console.log(existenciaTemp);
     item = {};
     cod={};
 
     if(COD !== ''){
           cod ["codigo"]   = COD;
-          cod ["existencia"]   = restantes;
+          cod ["cantidad"]   = CANT;
           
           item ["folio"]   = folito;
           item ["codigo_producto"]   = COD;
@@ -298,7 +307,7 @@ function grabaTodoTabla(TABLAID){
   var myJsonString = JSON.stringify(DATA);
   var myJsonString2 = JSON.stringify(CODE);
 
-  console.log(myJsonString);
+  //console.log(myJsonString);
 
   document.getElementById("datosVenta").value=myJsonString;
   document.getElementById("codigos").value=myJsonString2;

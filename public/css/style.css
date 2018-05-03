@@ -380,3 +380,51 @@ img {
 }
 
 /*Css para el modulo ve ventas --fin*/
+
+
+/*CSS para boton que oculta sidebar en la seccion reportes*/
+#mostrarSide{
+  display:scroll;
+  position:fixed;
+  bottom:40px;
+  left: 20px;
+  z-index: 3;
+  opacity: 0.6;
+  border: 2px solid green;
+}
+
+.flotante {
+    display:scroll;
+        position:fixed;
+        bottom:320px;
+        right:0px;
+}
+
+#separa{
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.card2{
+  padding: 4px;
+  border-radius: 17px;
+}
+
+.card2 div>p{
+  background-color: #E1E5EE;
+  border-radius: 5px;
+}
+
+
+.card2 form{
+  background-color: #D8CBD9;
+  border-radius: 17px;
+}
+
+.fondo-ventas{
+  background-color: #808080;
+  padding-top: 1rem;
+  border-radius: 5px;
+}
+
+

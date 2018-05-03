@@ -71,8 +71,8 @@ Route::get('/iconos',function(){
 	return view('plantilla.icons');
 });
 
-Route::get('/notificaciones',function(){
-	return view('plantilla.notifications');
+Route::get('/reportes',function(){
+	return view('plantilla.reportes');
 });
 
 
@@ -145,6 +145,16 @@ Route::get('listadoCancelarVenta','VentasController@listadoCancelarVenta');
 
 Route::delete('cancelarVenta/{id}','VentasController@cancelarVenta');
 
+Route::get('listadoCancelarP','VentasController@listadoCancelarProducto');
+
+Route::delete('cancelarProducto/{id}','VentasController@cancelarP');
+
+Route::get('buscarFolioV','VentasController@buscarFolioVenta');
+
+
+
+///////////fin rutas venta
+
 
 
 /////prueba select
@@ -154,6 +164,26 @@ Route::get('dropdown', function(){
 	$procesos = Categoria::find($id)->subcategorias;
 	return $procesos->lists('nombre', 'sub_id');
 });
+
+///_________________________________________-
+//ruta para genrar reportes pdf
+Route::get('verReporteVentas/{idUsuario}/{tipo}','PdfController@crearReporteVentas');
+
+Route::get('reporteVentasBetween/{tipo}','PdfController@reporteVentasBetween');
+
+Route::get('reporteVentasHoy/{tipo}','PdfController@reporteVentasHoy');
+
+Route::get('reporteVentasMensual/{tipo}/{mes}','PdfController@reporteVentasMensual');
+
+Route::get('reporteVentasAnual/{tipo}','PdfController@reporteVentasAnual');
+
+Route::get('reporteVentasGral/{tipo}','PdfController@reporteVentasGral');
+
+///_________________________________________-
+//ruta para vistas de reportes 
+Route::get('vistaVentas','ReporteController@ventas');
+
+
 
 
 //__________________________________________

@@ -59,6 +59,14 @@ return [
             'visibility' => 'public',
         ],
 
+        'ticket' => [
+            'driver' => 'local',
+            //'root' => storage_path('app'),
+            'root' => public_path('tickets/ventas'),
+            'url' => env('APP_URL').'tickets/ventas/',
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

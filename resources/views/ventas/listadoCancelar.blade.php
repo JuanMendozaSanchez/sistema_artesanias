@@ -4,7 +4,9 @@
 
 @section('contenido')
     
-    @if(Session::has('mensaje'))
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+          @if(Session::has('mensaje'))
         <p class="alert alert-success">
             <strong>
                 <a href="/listadoCancelarVenta">
@@ -14,11 +16,14 @@
             </strong>
         </p>                
     @endif
-
-    <h1>Ventas realizadas {{ $ventas->count() }}</h1>
-
+        
+    <h1 class="text-center">Ventas realizadas {{ $ventas->count() }}</h1>
+    <a href="ventas"><button class="btn btn-primary btn-lg "><span class="glyphicon glyphicon-chevron-left"></span> Salir</button></a>
     
-    
+    <hr>
+    <div class="table-responsive">
+        
+    </div>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Folio</th>
@@ -39,11 +44,11 @@
                 <td>{{$venta->total}}</td>
                 <td>{{$venta->efectivo}}</td>
                 <td>{{$venta->cambio}}</td>
-                <td>
+                <td class="text-center">
                     <form action="{{URL::to('/')}}/cancelarVenta/{{ $venta->id }}" method="POST">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
-                      <button class="btn btn-danger" type="submit" onclick="return confirm('¿Está seguro de cancelar la venta?')">Cancelar</button>
+                      <button class="btn btn-danger" type="submit" onclick="return confirm('¿Está seguro de cancelar la venta?')"><span class="glyphicon glyphicon-trash"></span></button>
                     </form>
                 </td>
             </tr>
@@ -51,7 +56,10 @@
             <li>No hay ventas registrados.</li>
         @endforelse
     </table>
-    <hr>
-    <br>
 
+    </div>
+</div>
+
+  <script src="{{asset('recursos/js/jquery-1.10.2.js')}}" type="text/javascript"></script>
+    <script src="{{asset('recursos/js/bootstrap.min.js')}}" type="text/javascript"></script>
 @endsection

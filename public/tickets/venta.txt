@@ -1,0 +1,4 @@
+02 05 2018 17:05:24 El Archivo tickets/venta.txt se ha modificado 
+Codigo | producto | cantidad |precio unitario| precio final 
+1001	Blusa cañada	 	 	1	 	765	 	765
+

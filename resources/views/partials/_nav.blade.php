@@ -28,7 +28,7 @@
                         </div>
                         </li>-->
                         <li>
-                            <a href="ventas" target="blank">Ventas</a>
+                            <a href="ventas" target="blank"><span class="glyphicon glyphicon-usd"></span> Ventas</a>
                         </li>
                         
                         <li class="dropdown">

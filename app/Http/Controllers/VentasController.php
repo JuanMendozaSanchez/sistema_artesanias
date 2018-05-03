@@ -10,6 +10,10 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Auth;
 use DB;
+//use Barryvdh\DomPDF\Facade as PDF;
+//use Illuminate\Support\Facades\PDF;
+
+
 
 class VentasController extends Controller
 {
@@ -39,6 +43,13 @@ class VentasController extends Controller
     }
 
     public function guardarVenta(Request $request){
+
+
+    	/*$codigos_json = ($request->input('codigos'));
+					$codigos=json_decode($codigos_json, true);
+						$canti=intval(array_get($codigos[0], 'cantidad'));
+						dd($canti);*/
+
     	$date=Carbon::now();
     	//dd($date);
     	$fechaVenta = $date;
@@ -79,11 +90,17 @@ class VentasController extends Controller
 
 					//ciclo para restar los productos que se vendieron
 					for ($i=0; $i < count($codigos) ; $i++) { 
-						DB::table('producto')->where('codigo', array_get($codigos[$i], 'codigo'))->update($codigos[$i]);
+						$canti=intval(array_get($codigos[$i], 'cantidad'));
+						DB::table('producto')->where('codigo', array_get($codigos[$i], 'codigo'))->decrement('existencia',$canti);
 					}
+
+                    ///llamar a la funcion para crear el ticket
+                    $this->crearTicket($idUsuario,$datos,'reportes.ticketV');
+
 					\Session::flash('mensaje','Venta realizada con éxito!!!');
 
 			        return redirect('ventas');
+
 				}else{
 					\Session::flash('mensaje','Ocurrio algún error al intentar guardar la venta!!!');
                 	return redirect('ventas');
@@ -98,13 +115,26 @@ class VentasController extends Controller
 
     public function listadoCancelarVenta(){
     	$ventas=Venta::orderBy('folio','desc')->get();
-
         return view('ventas.listadoCancelar')->with('ventas',$ventas);
     }
 
     public function cancelarVenta($id){
     	try {
             $venta=Venta::findOrFail($id);
+            //dd($venta->folio);
+            $folio=$venta->folio;
+
+            $productos=DB::table('detalle_venta')->select( 'detalle_venta.folio','codigo_producto as cp','cantidad')
+				->join('venta', function ($join) use ($folio) {
+					    $join->on('venta.folio', '=', 'detalle_venta.folio')
+					         ->where('venta.folio', '=', $folio);
+				   })->get();
+
+			foreach ($productos as $prod) {
+            	DB::table('producto')
+            	->where('codigo', $prod->cp)->increment('existencia', $prod->cantidad);
+			}
+			
             $venta->delete();
             \Session::flash('mensaje','La venta '.$venta->folio.' fue cancelada con exito!');
             $ventas=Venta::orderBy('folio','desc')->get();
@@ -114,4 +144,94 @@ class VentasController extends Controller
             abort(404);
         }
     }
+
+    public function listadoCancelarProducto(){
+    	$detallesV=DetalleVenta::orderBy('folio','desc')->get();
+        return view('ventas.listadoCancelarP')->with('detalles',$detallesV);
+    }
+
+    public function buscarFolioVenta(Request $request){
+    	$productos = DB::table('detalle_venta')->where('folio', $request->get('folio'))->orderBy('nombre_producto','DESC')->get();
+
+        return view('ventas.listadoCancelarP')->with('detalles',$productos);
+    }
+
+    public function cancelarP($id){
+    	try {
+            $detalleVenta=DetalleVenta::findOrFail($id);
+
+            Producto::where('codigo',$detalleVenta->codigo_producto)->increment('existencia', $detalleVenta->cantidad);
+
+            
+            Venta::where('folio',$detalleVenta->folio)->decrement('subtotal', $detalleVenta->total);
+
+            $venta=Venta::where('folio',$detalleVenta->folio)->first();
+            Venta::where('folio',$detalleVenta->folio)->update(['total'=> $venta->subtotal+($venta->subtotal*0.16),'cambio'=>$venta->efectivo-($venta->subtotal+($venta->subtotal*0.16))]);
+
+
+            //dd('hecho');
+
+            $detalleVenta->delete();
+            \Session::flash('mensaje','El producto '.$detalleVenta->nombre_producto.' fue cancelado con exito!');
+            $detallesV=DetalleVenta::orderBy('folio','desc')->get();
+
+            return redirect('listadoCancelarP');
+        } catch (\Exception $e) {
+            abort(404);
+        }
+    }
+
+public function crearTicket($idUsuario,$datos,$vistaurl)
+    {
+
+        $data = $datos;
+        $date = Carbon::now();
+        $usuario=Auth::user()->name;
+        $nombre_archivo = "tickets/venta.txt"; 
+ 
+        if(file_exists($nombre_archivo))
+        {
+            unlink('tickets/venta.txt');
+            
+            $mensaje = "El Archivo $nombre_archivo se ha modificado \n";
+            $mensaje=$mensaje."Codigo | producto | cantidad |precio unitario| precio final \n";
+            for ($i=0; $i < count($data) ; $i++) { 
+               $mensaje = $mensaje.array_get($data[$i], 'codigo_producto')."\t";
+               $mensaje = $mensaje.array_get($data[$i], 'nombre_producto')."\t \t \t";
+               $mensaje = $mensaje.array_get($data[$i], 'cantidad')."\t \t";
+               $mensaje = $mensaje.array_get($data[$i], 'precio_unitario')."\t \t";
+               $mensaje = $mensaje.array_get($data[$i], 'total')."\n";
+            }
+
+        }
+     
+        else
+        {
+            $mensaje = "El Archivo $nombre_archivo se ha creado \n";
+            $mensaje= "Codigo | producto | cantidad |precio unitario| precio final \n";
+            for ($i=0; $i < count($data) ; $i++) { 
+               $mensaje = $mensaje.array_get($data[$i], 'codigo_producto')."\t";
+               $mensaje = $mensaje.array_get($data[$i], 'nombre_producto')."\t \t \t";
+               $mensaje = $mensaje.array_get($data[$i], 'cantidad')."\t \t";
+               $mensaje = $mensaje.array_get($data[$i], 'precio_unitario')."\t \t";
+               $mensaje = $mensaje.array_get($data[$i], 'total')."\n";
+           }
+        }
+     
+        if($archivo = fopen($nombre_archivo, "a"))
+        {
+            if(fwrite($archivo, date("d m Y H:m:s"). " ". $mensaje. "\n"))
+            {
+                //echo "Se ha ejecutado correctamente";
+            }
+            else
+            {
+                //echo "Ha habido un problema al crear el archivo";
+            }
+     
+            fclose($archivo);
+        }
+
+    }
+
 }

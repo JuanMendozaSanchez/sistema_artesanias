@@ -109,8 +109,6 @@
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="{{asset('recursos/js/paper-dashboard.js')}}"></script>
 
-	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="{{asset('recursos/js/demo.js')}}"></script>
 
 	<script type="text/javascript">
      $(document).ready(function(){

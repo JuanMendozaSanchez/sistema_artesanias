@@ -10,6 +10,16 @@ use DB;
 
 class SubcategoriaController extends Controller
 {
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function inicio(){
     	$categorias=Categoria::all();
     	$subcategoria=Subcategoria::orderBy('sub_id','desc')->get();

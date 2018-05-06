@@ -49,15 +49,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/fuentes">
-                        <i class="ti-text"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/iconos">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>Icons</p>
+                    <a href="/codigosB">
+                        <i class="glyphicon glyphicon-barcode"></i>
+                        <p>Generar BC</p>
                     </a>
                 </li>
                 <li>
@@ -70,6 +64,12 @@
                     <a href="/reportes">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         <p>Reportes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/graficas">
+                        <i class="glyphicon glyphicon-stats"></i>
+                        <p>Gráficas</p>
                     </a>
                 </li>
             </ul>

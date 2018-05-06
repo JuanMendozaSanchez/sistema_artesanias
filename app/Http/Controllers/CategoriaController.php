@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Input;
 
 class CategoriaController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function inicio(){
     	$categorias=Categoria::orderBy('id','desc')->get();
     	return view('categorias.principal')->with('categorias',$categorias);

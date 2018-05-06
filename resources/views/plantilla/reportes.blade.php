@@ -1,7 +1,7 @@
 
 @extends('plantilla.dashboard')
 
-@section('title', 'Notificaciones')
+@section('title', 'Reportes')
 
 @section('contenido')
 

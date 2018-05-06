@@ -169,7 +169,7 @@ class UserController extends Controller
         $nuevo_tel_cel=e($request->input('inputTelCel'));
         $nuevo_direccion=e($request->input('inputDireccion'));
         $nuevo_tipo=e($request->input('tipo'));
-
+        //dd($nuevo_tipo);
         $img = $request->file('file');
         $ruta;
         //codigo para imagen

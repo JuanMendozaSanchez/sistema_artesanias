@@ -120,7 +120,10 @@
                                 <h4 class="title">Editar Perfil</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form method="post" action="/modificar_usuario/{{Auth::user()->id}}">
+                                    @csrf
+                                    <input type="hidden" class="form-control" name="file" id="file" value="">
+                                    <input type="hidden" class="form-control" name="profile" id="file" value="activado">
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
@@ -131,13 +134,13 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Nombre</label>
-                                                <input type="text" class="form-control border-input" placeholder="Usuario" value="{{ Auth::user()->name }}">
+                                                <input type="text" name="inputNombre" class="form-control border-input" placeholder="Usuario" value="{{ Auth::user()->name }}">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Dirección de correo</label>
-                                                <input type="email" class="form-control border-input" placeholder="Correo" value="{{ Auth::user()->email }}">
+                                                <input type="email" name="inputCorreo" class="form-control border-input" placeholder="Correo" value="{{ Auth::user()->email }}">
                                             </div>
                                         </div>
                                     </div>
@@ -146,13 +149,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Teléfono fijo</label>
-                                                <input type="text" class="form-control border-input" placeholder="Teléfono fijo" value="{{ Auth::user()->tel_fijo }}">
+                                                <input type="text" name="inputTelFijo" class="form-control border-input" placeholder="Teléfono fijo" value="{{ Auth::user()->tel_fijo }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Teléfono celular</label>
-                                                <input type="text" class="form-control border-input" placeholder="Teléfono celular" value="{{ Auth::user()->tel_cel }}">
+                                                <input type="text" name="inputTelCel" class="form-control border-input" placeholder="Teléfono celular" value="{{ Auth::user()->tel_cel }}">
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +164,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Dirección</label>
-                                                <input type="text" class="form-control border-input" placeholder="Dirección actual" value="{{ Auth::user()->direccion }}">
+                                                <input type="text" name="inputDireccion" class="form-control border-input" placeholder="Dirección actual" value="{{ Auth::user()->direccion }}">
                                             </div>
                                         </div>
                                     </div>
@@ -171,12 +174,14 @@
                                             @if(Auth::user()->tipo=='1')
                                                 <div class="form-group">
                                                     <label>Tipo usuario</label>
-                                                    <input type="text" class="form-control border-input" disabled placeholder="Tipo usuario" value="Administrador">
+                                                    <input type="hidden" name="tipo" value="{{ Auth::user()->tipo }}">
+                                                    <input type="text"  class="form-control border-input" disabled placeholder="Tipo usuario" value="Administrador">
                                                 </div>
                                             @else
                                                 <div class="form-group">
                                                     <label>Tipo usuario</label>
-                                                    <input type="text" class="form-control border-input" disabled placeholder="Tipo usuario" value="Normal">
+                                                    <input type="hidden" name="tipo" value="{{ Auth::user()->tipo }}">
+                                                    <input type="text" name="tipo" class="form-control border-input" disabled placeholder="Tipo usuario" value="Normal">
                                                 </div>
                                             @endif
                                         </div>

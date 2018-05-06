@@ -13,6 +13,9 @@
 use Illuminate\Http\Request;
 use SistemaLaOax\Categoria;
 use SistemaLaOax\Subcategoria;
+use SistemaLaOax\Producto;
+use Khill\Lavacharts\Lavacharts;
+use SistemaLaOax\Venta;
 
 Route::get('/', function () {
     return view('home');
@@ -51,29 +54,28 @@ Route::delete('/eliminar_usuario/{id}','UserController@eliminar_user');
 //fin de rutas para usuarios
 
 //rutas temporales para las secciones sidebar
-Route::get('/fuentes',function(){
-	return view('plantilla.typography');
-});
+Route::get('/graficas','PlantillaController@graficas');
+
+Route::get('/usuario','PlantillaController@perfilUsuario');
 
 Route::get('/maps',function(){
 	return view('plantilla.maps');
-});
+})->middleware('auth');
 
-Route::get('/usuario',function(){
-	return view('plantilla.user');
-});
+
 
 Route::get('/tabla',function(){
 	return view('plantilla.table');
 });
 
-Route::get('/iconos',function(){
-	return view('plantilla.icons');
-});
+Route::get('/codigosB',function(){
+	$productos=Producto::orderBy('nombre','asc')->get();
+	return view('plantilla.codigos')->with('productos',$productos);
+})->middleware('auth');
 
 Route::get('/reportes',function(){
 	return view('plantilla.reportes');
-});
+})->middleware('auth');
 
 
 //rutas para dataTable
@@ -179,9 +181,16 @@ Route::get('reporteVentasAnual/{tipo}','PdfController@reporteVentasAnual');
 
 Route::get('reporteVentasGral/{tipo}','PdfController@reporteVentasGral');
 
+//Ruta para generar codigos de barra
+Route::get('generarCodigoB/{codigo}/{tipo}','PdfController@generarBC');
+
 ///_________________________________________-
 //ruta para vistas de reportes 
 Route::get('vistaVentas','ReporteController@ventas');
+
+
+///____________________________________
+
 
 
 

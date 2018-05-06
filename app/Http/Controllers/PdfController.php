@@ -9,9 +9,22 @@ use Carbon\Carbon;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Input;
+use \Milon\Barcode\DNS1D;
+use \Milon\Barcode\DNS2D; 
+use SistemaLaOax\Producto;
 
 class PdfController extends Controller
 {
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function crearPDF($datos,$vistaurl,$tipo,$titulo)
     {
 
@@ -113,4 +126,26 @@ class PdfController extends Controller
     
     //$q->whereMonth('created_at', '=', date('m'));
     //$users = DB::table('users')->whereBetween('votes', [1, 100])->get();
+
+    ////Codigo de barras
+    public function generarBC($codigoProducto,$tipo){
+    	 $barra = new DNS1D();
+    	 $usuario=Auth::user()->name;
+    	 $producto=Producto::where('codigo',$codigoProducto)->first();
+    	 $codigo=$codigoProducto;
+
+        $view =  \View::make('codigoBarras.vistaBC', compact('barra','codigo','usuario','producto'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);//->setPaper('a4', 'landscape');
+        if ($tipo==1) {
+        	return $pdf->stream('Codigo de barras');
+        }elseif ($tipo==2) {
+        	return $pdf->download('Codigo de barras');
+        }
+    	 //dd($producto);
+    	 //return view('codigoBarras.vistaBC')->with('barra',$barra)->with('codigo',$codigoProducto)->with('usuario',$usuario)->with('nombre',$nombre)->with('producto',$producto);
+
+    	 //echo DNS1D::getBarcodeHTML("4445", "EAN13");
+    	 //y si lo vamos a imprimir, ya no seria con getBarcodeHTML sino con getBarcodeSVG
+    }//fin codigo de barras
 }

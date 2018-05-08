@@ -17,7 +17,7 @@
               <div class="row"><!--inicio row-->
                 <div class="col-md-12">
                   <div class="col-container">
-                    <div class="col vl-r bg-primary" >
+                    <div class="col vl-r bg-primary tabla" >
                       <h2 class="text-center">Lista de Categorías</h2>
                       <hr>
                       <table class="table table-condensed">
@@ -67,7 +67,7 @@
                   </div>
 
                   <div class="col-container">
-                    <div class="col vl-r bg-warning" >
+                    <div class="col vl-r bg-warning tabla" >
                       <h2 class="text-warning text-center">Modificar Categoría</h2>
                       <hr>
                       <table class="table table-condensed">
@@ -97,7 +97,7 @@
                     </table>
                     </div>
 
-                    <div class="col vl-l bg-danger" >
+                    <div class="col vl-l bg-danger tabla" >
                       <h2 class="text-danger text-center">Eliminar Categoría</h2>
                       <hr>
                       <table class="table table-condensed">

@@ -21,10 +21,8 @@
     <a href="ventas"><button class="btn btn-primary btn-lg "><span class="glyphicon glyphicon-chevron-left"></span> Salir</button></a>
     
     <hr>
-    <div class="table-responsive">
-        
-    </div>
-    <table class="table table-striped table-bordered">
+    <div class="table-responsive tabla">
+        <table class="table table-striped table-bordered">
         <tr>
             <th>Folio</th>
             <th>Fecha</th>
@@ -56,6 +54,8 @@
             <li>No hay ventas registrados.</li>
         @endforelse
     </table>
+    </div>
+    
 
     </div>
 </div>

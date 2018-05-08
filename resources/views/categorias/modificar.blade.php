@@ -19,7 +19,7 @@
     
 
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1 tabla">
           <center>
           <h1>Datos Categoría</h1>
             <table class="table table-striped table-bordered">

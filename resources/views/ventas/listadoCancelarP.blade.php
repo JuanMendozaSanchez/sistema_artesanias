@@ -28,7 +28,7 @@
     </form>
     <a href="listadoCancelarP"><button class="btn btn-info btn-lg"><i class="ti-view-list"></i>Listado</button></a>
     <hr>
-    <div class="table-responsive">
+    <div class="table-responsive tabla">
         <table class="table table-striped table-bordered table-condensed">
         <tr>
             <th>Folio de venta</th>

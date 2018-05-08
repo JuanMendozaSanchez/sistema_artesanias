@@ -5,9 +5,8 @@
 @section('contenido')
     <h1>Usuarios existentes {{ $usuarios->total() }}</h1>
 
-    
-
-    <table class="table table-striped table-bordered">
+    <div class="tabla">
+        <table class="table table-striped table-bordered">
         <tr>
             <th>Clave</th>
             <th>Nombre</th>
@@ -41,6 +40,9 @@
         @endforelse
     </table>
     {!! $usuarios->render() !!}
+    </div>
+
+    
     <hr>
     <br>
 

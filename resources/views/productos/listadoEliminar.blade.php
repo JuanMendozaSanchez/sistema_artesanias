@@ -17,9 +17,8 @@
 
     <h1>Productos existentes {{ $productos->total() }}</h1>
 
-    
-    
-    <table class="table table-striped table-bordered">
+    <div class="tabla">
+        <table class="table table-striped table-bordered">
         <tr>
             <th>Código</th>
             <th>Nombre</th>
@@ -50,6 +49,10 @@
         @endforelse
     </table>
     {!! $productos->render() !!}
+    </div>
+    
+    
+    
     <hr>
     <br>
 

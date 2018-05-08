@@ -190,6 +190,14 @@ Route::get('vistaVentas','ReporteController@ventas');
 
 
 ///____________________________________
+	//rutas para carrito
+Route::get('mostrarCar','PageController@mostrarCar');
+
+
+///____________________________________
+
+///____________________________________
+
 
 
 

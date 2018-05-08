@@ -35,11 +35,13 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
-        <li><a href="#">Acerca de</a></li>
-        <li><a href="/webProductos">Productos</a></li>
-        <li><a href="#">Contacto</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Acerca de</a></li>
+        <li><a href="/webProductos"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" id="etiCant2"></span> Productos</a></li>
+        <!--<li><a href="/mostrarCar"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>-->
+        <li><a href="#"><span class="glyphicon glyphicon-earphone"></span> Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        
             @guest
                 <li><a class="nav-link" href="/logueo"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
             @else
@@ -102,6 +104,12 @@
          }
       });
     });
+
+    if (sessionStorage.getItem('cantidad')==null || sessionStorage.getItem('cantidad')==0 ||sessionStorage.getItem('cantidad')=='0') {
+    }else{
+      document.getElementById('etiCant2').innerHTML = sessionStorage.getItem('cantidad');
+    }
+    
 </script>
 </body>
 </html>

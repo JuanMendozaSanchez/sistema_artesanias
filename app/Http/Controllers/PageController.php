@@ -17,4 +17,8 @@ class PageController extends Controller
     	$subcategorias=Subcategoria::all();
     	return view('paginaWeb.productos')->with('productos',$productos)->with('categorias',$categorias)->with('subcategorias',$subcategorias);
     }
+
+    public function mostrarCar(){
+    	return view('paginaWeb.carrito');
+    }
 }

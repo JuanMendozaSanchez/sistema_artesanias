@@ -16,7 +16,7 @@
     <h1>Datos del Producto</h1>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 tabla">
             <table class="table table-striped table-bordered">
                 <tr>
                     <th>Imagen</th>

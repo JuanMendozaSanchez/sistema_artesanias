@@ -16,7 +16,7 @@
     <h1>Usuario existente</h1>
 
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 tabla">
             <table class="table table-striped table-bordered">
                 <tr>
                     <th>Clave</th>

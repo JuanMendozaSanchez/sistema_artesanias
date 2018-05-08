@@ -3,7 +3,7 @@
 @section('title', 'Listado de productos')
 
 @section('contenido')
-<div class="panel-body">
+<div class="panel-body tabla">
     
     <form class="navbar-form navbar-left pull-right fondo_b"  method="GET" action="/buscarProducto" role="search">
         <div class="form-group">

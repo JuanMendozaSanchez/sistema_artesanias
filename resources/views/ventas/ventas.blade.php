@@ -40,7 +40,7 @@
                   <!--___________________________ inicio col 12-->
                     <div class="container-fluid">
                     <div class="row">
-                      <div class="col-md-12 table-responsive" >
+                      <div class="col-md-12 table-responsive tabla" >
                         <h2 class="text-center text-primary">Lista de productos</h2>
                         <!--method="POST" action="realizarVenta"-->
                         <form id="formita" method="POST" action="realizarVenta" onsubmit="grabaTodoTabla('tabla')">
@@ -208,7 +208,7 @@
      //var c=$(this).('.pf').val();
      //var valores=0;
      var pf=$(this).parents("tr").find('td:eq(4)>input').val();
-     console.log(pf);
+     //console.log(pf);
      subtotal=subtotal-parseFloat(pf);
      $("#subtotal").val(subtotal.toFixed(2));
      $("#subtotal2").val(subtotal.toFixed(2));

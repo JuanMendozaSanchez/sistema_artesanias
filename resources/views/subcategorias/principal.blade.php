@@ -18,7 +18,7 @@
                 <h1 class="text-center">Subcategorías</h1>
                 <div class="col-md-12">
                   <div class="col-container">
-                    <div class="col vl-r bg-primary" >
+                    <div class="col vl-r bg-primary tabla" >
                       <h2 class="text-center">Lista de Subcategorías</h2>
                       <hr>
                       <table class="table table-condensed">

@@ -23,7 +23,7 @@
                     <script type="text/javascript" src="{{ asset('js/tablas/edit_table.js') }}"></script>
                     
                     <div class="container-fluid">
-                    <div class="row">
+                    <div class="row tabla">
                       <div class="col-md-12" >
                         
                         <center>

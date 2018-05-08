@@ -119,10 +119,15 @@ h1 {
 .zoom:hover {
     position: relative;
     opacity: 0.85;
-    -ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Safari 3-8 */
-    transform: scale(1.5); 
+    -ms-transform: scale(1.3); /* IE 9 */
+    -webkit-transform: scale(1.3); /* Safari 3-8 */
+    transform: scale(1.3); 
     z-index: 1;
+    border:5px solid yellow;
+}
+
+.tabla{
+  overflow:scroll;
 }
 
 

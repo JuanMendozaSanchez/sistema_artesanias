@@ -3,6 +3,9 @@
     background-color: #778899;
 }
 
+.tabla{
+  overflow:scroll;
+}
 
 .titulo{
     text-align: center;

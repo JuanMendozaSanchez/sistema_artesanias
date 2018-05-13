@@ -193,6 +193,10 @@ Route::get('vistaVentas','ReporteController@ventas');
 	//rutas para carrito
 Route::get('mostrarCar','PageController@mostrarCar');
 
+Route::post('datosPayer','PageController@datosPayer');
+
+Route::post('recibiendoDatosCC','PageController@recibiendoDatosCC');
+
 
 ///____________________________________
 

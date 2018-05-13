@@ -1,0 +1,62 @@
+
+          .cart_anchor{ 
+              position:fixed;
+              left: 90%;
+              top: 18%;
+              background: url('../../img/muestra/cart-icon.png') no-repeat center center / 100% auto;
+              width: 60px;
+              height: 60px; 
+              z-index: 3;
+              border: 2px solid red;
+              background-color: #FDFA03;
+              border-radius: 50%;
+              opacity: 0.9;
+
+          }
+        .cart_anchor:hover{
+          cursor: pointer;
+          background-color: #00FA0C;
+        }
+
+        #addP{
+          width: 4rem;
+          height: 4rem;
+        }
+
+        .miBtn{
+          font-size: 2rem;
+          font-weight: bold;
+          color: red;
+        }
+
+        .miBtn:hover,.miBtn:active{
+          text-decoration: none;
+        }
+
+        #etiCant{
+          margin-left: 80%;
+          background-color: black;
+        }
+        
+        table thead{
+          background-color:#49FF6B;
+        }
+        table td:nth-child(4){
+          width: 90px;
+        }
+        table td:nth-child(5){
+          width:100px;
+        }
+        table td:last-child {
+          width:60px;
+        }
+table td:first-child {
+          width:1px;
+        }
+
+        div>.totalFinal{
+          text-align: right;
+          padding-right: 13%;
+          font-size:2rem;
+          font-weight:bold;
+        }

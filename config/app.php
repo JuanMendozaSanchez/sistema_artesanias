@@ -163,7 +163,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
-
+        MercadoPagoLaravel\Providers\MercadoPagoServiceProvider::class,
     ],
 
     /*
@@ -217,7 +217,7 @@ return [
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
-
+        'MP' => MercadoPagoLaravel\Facades\MP::class,
     ],
 
 ];

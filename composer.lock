@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4aac807076c2ecb822b41883544dd5c7",
+    "content-hash": "eee89fe9129a99df7c288fb6fbfa47ee",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -948,6 +948,43 @@
             "time": "2018-04-06T09:58:14+00:00"
         },
         {
+            "name": "mercadopago/sdk",
+            "version": "v0.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mercadopago/sdk-php.git",
+                "reference": "88fd10a084f750c3e48b417a53c26260c11c2bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mercadopago/sdk-php/zipball/88fd10a084f750c3e48b417a53c26260c11c2bb9",
+                "reference": "88fd10a084f750c3e48b417a53c26260c11c2bb9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/mercadopago.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Horacio Casatti",
+                    "email": "horacio.casatti@mercadolibre.com"
+                }
+            ],
+            "description": "MercadoPago SDK module for Payments integration.",
+            "keywords": [
+                "mercadopago",
+                "sdk"
+            ],
+            "time": "2015-10-14T13:49:16+00:00"
+        },
+        {
             "name": "milon/barcode",
             "version": "5.3.6",
             "source": {
@@ -1598,6 +1635,46 @@
                 "uuid"
             ],
             "time": "2018-01-20T00:28:24+00:00"
+        },
+        {
+            "name": "rodggall/mercadopago",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RodGGall/MercadoPagoLaravel.git",
+                "reference": "9862daf39083b4735bd1f7ce3b89b1cc24bfdeed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RodGGall/MercadoPagoLaravel/zipball/9862daf39083b4735bd1f7ce3b89b1cc24bfdeed",
+                "reference": "9862daf39083b4735bd1f7ce3b89b1cc24bfdeed",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": ">=5.6.4",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MercadoPagoLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "rodggall",
+                    "email": "rodggall@gmail.com"
+                }
+            ],
+            "description": "Implementacion del SDK v 5.0.2 de MercadoPago para laravel",
+            "time": "2018-05-09T15:13:54+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -4468,7 +4545,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "rodggall/mercadopago": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

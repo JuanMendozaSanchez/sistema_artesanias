@@ -63,7 +63,7 @@ class VentasController extends Controller
 	    //$nombreUsuario = e(Input::get('descripcion'));
 
 
-	   //try {
+	   try {
 				$venta= new Venta;
 				$venta->folio=$fol;
 				$venta->fecha=$fechaVenta;
@@ -105,10 +105,10 @@ class VentasController extends Controller
 					\Session::flash('mensaje','Ocurrio algún error al intentar guardar la venta!!!');
                 	return redirect('ventas');
 				}
-            /*} catch (\Exception $e) {
+            } catch (\Exception $e) {
                 \Session::flash('mensaje','Ocurrio algún error!!!');
                 return redirect('ventas');
-            }*/
+            }
             
 
     }

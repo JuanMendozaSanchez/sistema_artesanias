@@ -3,17 +3,28 @@
 @section('title','Catalogo de productos')
 
 @section('content')
+<link rel="stylesheet" href=" {{ asset('css/page/webpage.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('ShopingCartSource/css/cart.css') }}">
+@if(Session::has('mensaje'))
+          <div class="col-md-3"></div>
+          <div class="alert alert-Success alert-dismissible text-center col-md-6 bg-info" style="font-size: 1.5rem; z-index: 100">
+              <a class="close" data-dismiss="alert" aria-label="close" style="font-weight: bold;font-size:2rem;">&times;</a>
+              <h4 class="text-center">{{ Session::get('mensaje') }}</h4>
+          </div>
+        <div class="col-md-3"></div>               
+@endif
+
   <div class="container ">
     <div class="row fondo-prod">
       <!-- begin row-->
       <div class="col-md-12">
         
-        <link rel="stylesheet" href=" {{ asset('css/page/webpage.css')}}">
+        
 
         <!-- MAIN (Center website) -->
         <div class="main">
         <h1>PRODUCTOS</h1>
+        
         <hr>
         
         
@@ -55,6 +66,7 @@
       
 
       <div class="row col-md-12">
+        
 
         @forelse($productos as $producto)
           <div class="column {{ $producto->categoria }} {{ $producto->subcat }} col-lg-3 col-md-4 col-sm-6 portfolio-item ">
@@ -121,7 +133,7 @@
           <div class="col-md-12 text-center" id="mensajeParaBuyer">
             <div class="alert alert-info ">
               <p style="font-size: 2rem;"><strong>Gracias por su compra!!!</strong> Para finalizar satisfactoriamente por favor confirme sus datos.</p>
-                <form method="post" action="datosPayer" target="blank" onsubmit="ocultar()">
+                <form method="post" action="datosPayer"  onsubmit="ocultar()">
                   @csrf
                   <input type="hidden" name="cargaArticulos" id="cargaArticulos">
                   <input type="hidden" name="cargaTotal" id="cargaTotal">
@@ -168,7 +180,6 @@
           $('#seguir').show();
           $('#vaciar').show();
         }
-        
       </script>
 
 @endsection

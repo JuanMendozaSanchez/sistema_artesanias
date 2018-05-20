@@ -430,4 +430,28 @@ img {
   border-radius: 5px;
 }
 
+.alert-dark{
+  background-color: #D5D5D5;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.alert-dark .col-md-6  table, .alert-dark .col-md-6  table tbody tr th{
+  font-size: 1rem;
+  padding: 1px;
+  margin:1px;
+}
+
+.alert-dark h6{
+  padding-bottom: 1rem;
+  text-align: center;
+  color: #0C0A72;
+}
+
+.alert-dark h5{
+  color:red;
+}
+
+
+
 

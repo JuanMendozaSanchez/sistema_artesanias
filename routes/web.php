@@ -17,6 +17,7 @@ use SistemaLaOax\Producto;
 use Khill\Lavacharts\Lavacharts;
 use SistemaLaOax\Venta;
 
+
 Route::get('/', function () {
     return view('home');
     //return view('plantilla.dashboard2');
@@ -58,15 +59,21 @@ Route::get('/graficas','PlantillaController@graficas');
 
 Route::get('/usuario','PlantillaController@perfilUsuario');
 
+Route::get('pedidos','PlantillaController@pedidosOnline');
+
+Route::post('enviaRastreo','PlantillaController@enviarNumeroRastreo');
+
+Route::post('entregado/{id}','PlantillaController@estatusEntregado');
+	
+
+
 Route::get('/maps',function(){
 	return view('plantilla.maps');
 })->middleware('auth');
 
 
 
-Route::get('/tabla',function(){
-	return view('plantilla.table');
-});
+
 
 Route::get('/codigosB',function(){
 	$productos=Producto::orderBy('nombre','asc')->get();
@@ -190,26 +197,20 @@ Route::get('vistaVentas','ReporteController@ventas');
 
 
 ///____________________________________
-	//rutas para carrito
+//rutas para carrito
 Route::get('mostrarCar','PageController@mostrarCar');
 
 Route::post('datosPayer','PageController@datosPayer');
 
-Route::post('recibiendoDatosCC','PageController@recibiendoDatosCC');
-
-
-///____________________________________
-
-///____________________________________
-
-
-
-
-
+Route::post('finalizarCompra','PageController@finalizarCompra');
 
 //__________________________________________
 //rutas para pagina web de inicio 
 Route::get('webProductos','PageController@seccionProductos');
+
+Route::get('checarCambios','PlantillaController@verificaCambios');
+
+
 
 
 

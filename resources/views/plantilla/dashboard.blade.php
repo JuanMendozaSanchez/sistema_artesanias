@@ -2,12 +2,14 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 	<meta charset="utf-8" />
+
     @include('partials._evitarCache')
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon/favicon-16x16.png') }}">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<title>@yield('title') - Sistema</title>
 
@@ -127,5 +129,39 @@
     });   
 
     </script>
+
+        <script type="text/javascript">
+        	
+        /*$(document).ready(function(){
+
+            var url="checarCambios";
+            
+            console.log(data);
+
+          $.get(url,{data},function(mensaje){
+          	//pedidos=parseInt(mensaje);
+            console.log(mensaje.cambio,mensaje.cantidad);
+            $('#pedidos').val(mensaje.cantidad);
+          });
+          
+        });*/
+
+        (function poll(){
+        	var data=$('#pedidos').val();
+		    $.ajax({ url: "checarCambios",data:{data}, success: function(mensaje){
+		        //console.log(mensaje.cambio,mensaje.cantidad,mensaje.anteriores);
+		        
+		        if ($('#pedidos').val()=='0'){
+		        	$('#notificacion').hide();
+		        }else{
+		        	$('#notificacion').show();
+		        }
+		        $('#pedidos').val(mensaje.cantidad);
+		        //$('#notificacion').show();
+		    }, dataType: "json", complete: poll, timeout: 60000 });
+		})();
+
+        $('[data-toggle="tooltip"]').tooltip();
+        </script>
 
 </html>

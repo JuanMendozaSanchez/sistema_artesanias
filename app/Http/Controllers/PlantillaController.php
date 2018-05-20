@@ -10,6 +10,10 @@ use SistemaLaOax\Venta;
 use SistemaLaOax\DetalleVenta;
 use Lava;
 use DB;
+use SistemaLaOax\OnlineArticulos;
+use SistemaLaOax\OnlineCliente;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 
 
 class PlantillaController extends Controller
@@ -98,5 +102,55 @@ class PlantillaController extends Controller
 		$grafica->pointSize(5);
 		$grafica->fontSize(10);
 		return view('plantilla.graficas');
+    }
+
+    public function pedidosOnline(){
+    	$pedidos=OnlineCliente::orderBy('id','DESC')->get();
+    	$articulos=OnlineArticulos::all();
+    	return view('plantilla.pedidosOnline')->with('pedidos',$pedidos)->with('articulos',$articulos);
+    }
+
+    //funcion para ver si existen cambios en la base de datos y notificarlos
+    public function verificaCambios(Request $request){
+        $pedidos=OnlineCliente::all();
+        //dd($pedidos->count());
+        $existentes=$pedidos->count();
+        $anteriores=$request->data;
+
+        $cambio="si";
+
+        if($request->ajax()){
+        	if ($existentes>$anteriores) {
+        		//return $cambio;
+        		return response()->json(['cambio' => $cambio,'cantidad'=>$existentes,'anteriores'=>$anteriores]);
+        	}
+            
+        }
+    }
+
+    //función para enviar el número de rastreo al correo del cliente y cambiar el estatus del pedido a en proceso
+    public function enviarNumeroRastreo(Request $request){
+    	$id=e(Input::get('id'));
+    	$correo=e(Input::get('correo'));
+    	$rastreo=e(Input::get('rastreo'));
+    	//dd($id,$correo,$rastreo);
+
+    	Mail::to($correo)->send(new \SistemaLaOax\Mail\EnviarRastreo($rastreo));
+
+    	$pedido=OnlineCliente::find($id);
+    	$pedido->estatus="procesando";
+    	$pedido->rastreo=$rastreo;
+    	$pedido->save();
+
+    	\Session::flash('mensaje','El número de rastreo ha sido enviado al cliente!!!');
+    	return redirect('pedidos');
+    }
+
+    public function estatusEntregado($id){
+    	$pedido=OnlineCliente::find($id);
+    	$pedido->estatus="entregado";
+    	$pedido->save();
+    	\Session::flash('mensaje','El estatus cambió a entregado!!!');
+    	return redirect('pedidos');
     }
 }

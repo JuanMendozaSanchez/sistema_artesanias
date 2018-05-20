@@ -1,17 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Carrito')
+@section('title', 'Finalizar Compra')
 
 @section('content')
 
 @if(Session::has('mensaje'))
-    <p class="txt_cent alert alert-success">
-      <strong>
-        <a href="/ventas">
-          <span class="glyphicon glyphicon-remove rojo"></span>
-        </a>{{ Session::get('mensaje') }}  
-      </strong>
-    </p>                
+  <div class="alert alert-warning alert-dismissible text-center" style="font-size: 1rem;">
+      <a class="close" data-dismiss="alert" aria-label="close" style="font-weight: bold;font-size:2rem;">&times;</a>
+      <h6 class="text-center">{{ Session::get('mensaje') }}</h6>
+  </div>               
 @endif
 
   <div class="content">
@@ -19,8 +16,8 @@
       <div class="row">
         <div class="alert alert-info alert-dismissible text-center" style="font-size: 1.5rem;">
           <a class="close" data-dismiss="alert" aria-label="close" style="font-weight: bold;font-size:2rem;">&times;</a>
-          <strong>Aviso!</strong> Para evitar errores durante el envío ingrese sus datos correctos<strong> (solo en caso de ser necesario).</strong>
-            <p>Si todo esta correcto presione el boton <strong>finalizar.</strong></p>
+          <strong>Aviso!!!</strong> Para evitar errores durante el envío <strong>Verifique</strong> sus datos <strong> y agregue su número de teléfono.</strong>
+            <p>Si todo esta correcto presione el boton <strong>finalizar. (Recibira un correo con los datos de su compra)</strong></p>
         </div>
         <div class="col-md-6">
           <h3 class="text-center">Artículos</h3>
@@ -53,7 +50,19 @@
 
         <div class="col-md-6">
           <h3 class="text-center">Datos del Comprador</h3>
-          <form method="post" action="">
+          <form method="post" action="finalizarCompra" >
+            @csrf
+            <input type="hidden" name="listaArticulos" value="{{ json_encode($articulos)}}">
+            <input type="hidden" name="tot" value="{{ $total }}">
+            <div class="form-group col-md-6">
+              <label>Fecha de Compra:</label>
+              <input type="hidden" name="fecha2" value="{{ $fecha }}">
+              <input type="text" disabled name="fecha" value="{{ $fecha }}" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Teléfono Celular:</label>
+              <input type="text" pattern="[0-9]{10}" minlength="10" maxlength="10" required name="telefonoCliente" class="form-control " placeholder="Número celular a diez dígitos">
+            </div>
             <div class="form-group col-md-6">
               <label>Nombre:</label>
               <input type="text" required name="nombreCliente" value="{{ $datosCliente->shipping_address->recipient_name }}" class="form-control">

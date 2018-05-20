@@ -13,6 +13,7 @@
          }
       });
     });
+
 </script>
 
 <div class="sidebar" data-background-color="white" data-active-color="danger">
@@ -43,15 +44,18 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/tabla">
+                    <a href="/pedidos">
                         <i class="ti-view-list-alt"></i>
-                        <p>Table List</p>
+                        <p>Pedidos en linea <span class="glyphicon glyphicon-bell" style="font-size: 2.3rem;background-color: #FF7234;padding: 2px; border-radius: 10px;color: white;" data-toggle="tooltip" data-placement="left" title="Actualiza la página para ver los nuevos pedidos" id="notificacion"></span></p>
+                        <input type="hidden" name="pedidos" id="pedidos" value="0">
+
                     </a>
                 </li>
                 <li>
                     <a href="/codigosB">
                         <i class="glyphicon glyphicon-barcode"></i>
                         <p>Generar BC</p>
+
                     </a>
                 </li>
                 <li>

@@ -21,7 +21,7 @@
   <script src="{{ asset('js/app.js') }}" defer></script>
   
 </head>
-<body class="my-body">
+<body class="my-body" onload="deshabilitaRetroceso()">
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -110,6 +110,11 @@
       document.getElementById('etiCant2').innerHTML = sessionStorage.getItem('cantidad');
     }
     
+    function deshabilitaRetroceso(){
+    window.location.hash="no-back-button";
+    window.location.hash="Again-No-back-button" //chrome
+    window.onhashchange=function(){window.location.hash="no-back-button";}
+}
 </script>
 </body>
 </html>
